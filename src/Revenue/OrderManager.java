@@ -5,7 +5,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 
-public class orderManager {
+public class OrderManager {
     static int[] orderDishIds =new int[50];
     static int[] orderDishCounts = new int[50];
     static int orderDishCount = 0;
@@ -14,8 +14,8 @@ public class orderManager {
 
 
     public static void viewTheDish(){
-        for(int i = 0; i < menuManager.dishCount; i++){
-            System.out.println(menuManager.dishNames[i]+"\t"+ menuManager.dishPrices[i]);
+        for(int i = 0; i < MenuManager.dishCount; i++){
+            System.out.println(MenuManager.dishNames[i]+"\t"+ MenuManager.dishPrices[i]);
         }
     }
 
@@ -25,7 +25,7 @@ public class orderManager {
     public static void enCapacityOrder(){
         int[] newOrderDishIds = new int[orderDishIds.length + 50];
         int[] newOrderDishCounts = new int[orderDishCounts.length + 50];
-        for(int i = 0;i < menuManager.dishNames.length;i++){
+        for(int i = 0; i < MenuManager.dishNames.length; i++){
             newOrderDishIds[i] = orderDishIds[i];
             newOrderDishCounts[i] = orderDishCounts[i];
         }
@@ -39,9 +39,9 @@ public class orderManager {
      */
     public static void dishOrder(){
         for(int i = 0; i < orderDishCount; i++){
-            System.out.println(menuManager.dishNames[orderDishIds[i]] + "\t"
+            System.out.println(MenuManager.dishNames[orderDishIds[i]] + "\t"
                     + orderDishCounts[i] + "\t"
-                    + (orderDishCounts[i] * menuManager.dishPrices[orderDishIds[i]]));
+                    + (orderDishCounts[i] * MenuManager.dishPrices[orderDishIds[i]]));
         }
     }
 
@@ -52,7 +52,7 @@ public class orderManager {
         double sum = 0;
         for(int i = 0; i < orderDishCount; i++){
             int id = orderDishIds[i];
-            sum = sum + (menuManager.dishPrices[id] * orderDishCounts[i]);
+            sum = sum + (MenuManager.dishPrices[id] * orderDishCounts[i]);
         }
         System.out.println("今日总收入为：" + sum);
     }
@@ -65,7 +65,7 @@ public class orderManager {
     public static double total(){
         double sum = 0;
         for(int i = 0;i < orderDishCount;i++){
-            sum = sum + (menuManager.dishPrices[orderDishIds[i]] * orderDishCounts[i]);
+            sum = sum + (MenuManager.dishPrices[orderDishIds[i]] * orderDishCounts[i]);
         }
         return sum;
     }

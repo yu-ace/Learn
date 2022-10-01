@@ -5,7 +5,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 
-public class menuManager {
+public class MenuManager {
 
     static String[] dishNames =new String[50];
     static double[] dishPrices = new double[50];
@@ -57,12 +57,12 @@ public class menuManager {
      */
     public static void todayOrderDishCount(){
         double sum = 0;
-        for(int i = 0; i < orderManager.orderDishCount; i++){
-            int orderDishId = orderManager.orderDishIds[i];
-            double a = orderManager.orderDishCounts[i] * dishPrices[orderDishId];
+        for(int i = 0; i < OrderManager.orderDishCount; i++){
+            int orderDishId = OrderManager.orderDishIds[i];
+            double a = OrderManager.orderDishCounts[i] * dishPrices[orderDishId];
             sum = sum + a;
         }
-        System.out.println(sum/orderManager.orderDishCount);;
+        System.out.println(sum/ OrderManager.orderDishCount);;
     }
 
     /**
@@ -70,12 +70,12 @@ public class menuManager {
      */
     public static void top5(){
         int [] a = new int[50];
-        for(int i = 0; i < orderManager.orderDishCount; i++){
-            a[i] = a[i] + orderManager.orderDishCounts[i];
+        for(int i = 0; i < OrderManager.orderDishCount; i++){
+            a[i] = a[i] + OrderManager.orderDishCounts[i];
         }
-        for(int i = 0; i < orderManager.orderDishCount; i++){
+        for(int i = 0; i < OrderManager.orderDishCount; i++){
             int max = a[i];
-            for(int j = i; j < orderManager.orderDishCount; j++){
+            for(int j = i; j < OrderManager.orderDishCount; j++){
                 if(max < a[j]){
                     max = a[j];
                     a[j] = a[i];
@@ -85,12 +85,12 @@ public class menuManager {
         }
         int[] c = new int[50];
         for(int i = 0;i < c.length;i++){
-            c[i] = orderManager.orderDishCounts[i];
+            c[i] = OrderManager.orderDishCounts[i];
         }
         for(int i = 0;i < 5;i++){
-            for(int j = 0; j < orderManager.orderDishCount; j++){
+            for(int j = 0; j < OrderManager.orderDishCount; j++){
                 if(c[j] == a[i]){
-                    System.out.println(dishNames[orderManager.orderDishIds[j]]);
+                    System.out.println(dishNames[OrderManager.orderDishIds[j]]);
                     c[j] = 0;
                     break;
                 }
