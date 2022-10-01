@@ -128,6 +128,7 @@ public class RevenueTools {
         dishNames[dishCount] = name;
         dishPrices[dishCount] = price;
         dishCount++;
+        System.out.println(1);
     }
 
 
