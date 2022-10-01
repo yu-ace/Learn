@@ -16,8 +16,8 @@ public class RevenueTools {
     static int[] orderDishCounts = new int[50];
     static int orderDishCount = 0;
     static Scanner scanner = new Scanner(System.in);
-    static File menuOrder = new File(FileUtils.getUserDirectoryPath() + "/learn/restaurant/menuMoney.dat");
-    static File menuAdmin =new File(FileUtils.getUserDirectoryPath() + "/learn/restaurant/GL/menuMoney.dat");
+    static File orderDataFile = new File(FileUtils.getUserDirectoryPath() + "/learn/restaurant/menuMoney.dat");
+    static File menuAdminDataFile =new File(FileUtils.getUserDirectoryPath() + "/learn/restaurant/GL/menuMoney.dat");
 
 
     public static void main(String[] args) {
@@ -293,7 +293,7 @@ public class RevenueTools {
             try {
                 for(int i = 0; i < orderDishCount; i++){
                     String danList = orderDishIds[i] + "\t" + orderDishCounts[i];
-                    FileUtils.write(menuOrder,danList + "\n","utf8",true);
+                    FileUtils.write(orderDataFile,danList + "\n","utf8",true);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -305,11 +305,11 @@ public class RevenueTools {
      * 管理人员保存菜单
      */
     public static void saveDishByAdmin(){
-        FileUtils.deleteQuietly(menuAdmin);
+        FileUtils.deleteQuietly(menuAdminDataFile);
         try {
             for(int i = 0; i < dishCount; i++){
                 String danList = dishNames[i] + "\t" + dishPrices[i];
-                FileUtils.write(menuAdmin,danList + "\n","utf8",true);
+                FileUtils.write(menuAdminDataFile,danList + "\n","utf8",true);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -322,7 +322,7 @@ public class RevenueTools {
      */
     public static void loadDishByAdmin(){
         try {
-            String menuInformationFile = FileUtils.readFileToString(menuAdmin,"utf8");
+            String menuInformationFile = FileUtils.readFileToString(menuAdminDataFile,"utf8");
             String[] menuLines = menuInformationFile.split("\n");
             for(int i = 0;i < menuLines.length;i++){
                 String[] menuInformationStr = menuLines[i].split("\t");
@@ -352,7 +352,7 @@ public class RevenueTools {
      */
     public static void load(){
         try {
-            String orderDishInformation =FileUtils.readFileToString(menuOrder,"utf8");
+            String orderDishInformation =FileUtils.readFileToString(orderDataFile,"utf8");
             String[] menuOrderLines = orderDishInformation.split("\n");
             for(int i = 0;i < menuOrderLines.length;i++){
                 String[] menuMessages = menuOrderLines[i].split("\t");
