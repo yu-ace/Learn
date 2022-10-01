@@ -127,11 +127,6 @@ public class RevenueTools {
     }
 
 
-    /**
-     * 管理员添加菜品
-     * @param name 菜品名称
-     * @param price 菜品价格
-     */
     public static void addDish(String name, double price){
         if(dishCount > dishNames.length / 2){
             enCapacity();
