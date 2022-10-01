@@ -12,12 +12,9 @@ public class RevenueTools {
     static double[] dishPrices = new double[50];
     static int dishCount = 0;
 
-
     static int[] orderDishIds =new int[50];
     static int[] orderDishCounts = new int[50];
     static int orderDishCount = 0;
-
-
 
     static File menuOrderFile = new File(FileUtils.getUserDirectoryPath() + "/learn/restaurant/menuMoney.dat");
     static File menuAdminFile =new File(FileUtils.getUserDirectoryPath() + "/learn/restaurant/GL/menuMoney.dat");
@@ -43,9 +40,6 @@ public class RevenueTools {
 
     }
 
-    /**
-     * 顾客系统
-     */
     private static void addOrder() {
         while (true){
             System.out.println("请输入需要的菜单序号：");
