@@ -50,28 +50,7 @@ public class menuManager {
         dishCount--;
     }
 
-    /**
-     * 管理员查看顾客订单列表
-     */
-    public static void dishOrder(){
-        for(int i = 0; i < orderDishCount; i++){
-            System.out.println(dishNames[orderDishIds[i]] + "\t"
-                    + orderDishCounts[i] + "\t"
-                    + (orderDishCounts[i] * dishPrices[orderDishIds[i]]));
-        }
-    }
 
-    /**
-     * 查看总收入
-     */
-    public static void todayRevenue(){
-        double sum = 0;
-        for(int i = 0; i < orderDishCount; i++){
-            int id = orderDishIds[i];
-            sum = sum + (dishPrices[id] * orderDishCounts[i]);
-        }
-        System.out.println("今日总收入为：" + sum);
-    }
 
     /**
      * 输出客单量

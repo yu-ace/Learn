@@ -69,9 +69,9 @@ public class RevenueTools {
                 int id = scanner.nextInt();
                 menuManager.deleteDish(id);
             }else if(num.equals("3")){
-                menuManager.dishOrder();
+                orderManager.dishOrder();
             }else if(num.equals("4")){
-                menuManager.todayRevenue();
+                orderManager.todayRevenue();
             }else if(num.equals("5")){
                 menuManager.todayOrderDishCount();
             }else if(num.equals("6")){

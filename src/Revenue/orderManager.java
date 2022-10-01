@@ -14,8 +14,8 @@ public class orderManager {
 
 
     public static void viewTheDish(){
-        for(int i = 0; i < dishCount; i++){
-            System.out.println(dishNames[i]+"\t"+ dishPrices[i]);
+        for(int i = 0; i < menuManager.dishCount; i++){
+            System.out.println(menuManager.dishNames[i]+"\t"+ menuManager.dishPrices[i]);
         }
     }
 
@@ -25,13 +25,38 @@ public class orderManager {
     public static void enCapacityOrder(){
         int[] newOrderDishIds = new int[orderDishIds.length + 50];
         int[] newOrderDishCounts = new int[orderDishCounts.length + 50];
-        for(int i = 0;i < dishNames.length;i++){
+        for(int i = 0;i < menuManager.dishNames.length;i++){
             newOrderDishIds[i] = orderDishIds[i];
             newOrderDishCounts[i] = orderDishCounts[i];
         }
         orderDishIds = newOrderDishIds;
         orderDishCounts = newOrderDishCounts;
     }
+
+
+    /**
+     * 管理员查看顾客订单列表
+     */
+    public static void dishOrder(){
+        for(int i = 0; i < orderDishCount; i++){
+            System.out.println(menuManager.dishNames[orderDishIds[i]] + "\t"
+                    + orderDishCounts[i] + "\t"
+                    + (orderDishCounts[i] * menuManager.dishPrices[orderDishIds[i]]));
+        }
+    }
+
+    /**
+     * 查看总收入
+     */
+    public static void todayRevenue(){
+        double sum = 0;
+        for(int i = 0; i < orderDishCount; i++){
+            int id = orderDishIds[i];
+            sum = sum + (menuManager.dishPrices[id] * orderDishCounts[i]);
+        }
+        System.out.println("今日总收入为：" + sum);
+    }
+
 
     /**
      * 顾客下单的菜单金额
@@ -40,7 +65,7 @@ public class orderManager {
     public static double total(){
         double sum = 0;
         for(int i = 0;i < orderDishCount;i++){
-            sum = sum + (dishPrices[orderDishIds[i]] * orderDishCounts[i]);
+            sum = sum + (menuManager.dishPrices[orderDishIds[i]] * orderDishCounts[i]);
         }
         return sum;
     }
