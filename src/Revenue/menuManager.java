@@ -57,12 +57,12 @@ public class menuManager {
      */
     public static void todayOrderDishCount(){
         double sum = 0;
-        for(int i = 0; i < orderDishCount; i++){
-            int orderDishId = orderDishIds[i];
-            double a = orderDishCounts[i] * dishPrices[orderDishId];
+        for(int i = 0; i < orderManager.orderDishCount; i++){
+            int orderDishId = orderManager.orderDishIds[i];
+            double a = orderManager.orderDishCounts[i] * dishPrices[orderDishId];
             sum = sum + a;
         }
-        System.out.println(sum/orderDishCount);;
+        System.out.println(sum/orderManager.orderDishCount);;
     }
 
     /**
@@ -70,12 +70,12 @@ public class menuManager {
      */
     public static void top5(){
         int [] a = new int[50];
-        for(int i = 0; i < orderDishCount; i++){
-            a[i] = a[i] + orderDishCounts[i];
+        for(int i = 0; i < orderManager.orderDishCount; i++){
+            a[i] = a[i] + orderManager.orderDishCounts[i];
         }
-        for(int i = 0; i < orderDishCount; i++){
+        for(int i = 0; i < orderManager.orderDishCount; i++){
             int max = a[i];
-            for(int j = i; j < orderDishCount; j++){
+            for(int j = i; j < orderManager.orderDishCount; j++){
                 if(max < a[j]){
                     max = a[j];
                     a[j] = a[i];
@@ -85,12 +85,12 @@ public class menuManager {
         }
         int[] c = new int[50];
         for(int i = 0;i < c.length;i++){
-            c[i] = orderDishCounts[i];
+            c[i] = orderManager.orderDishCounts[i];
         }
         for(int i = 0;i < 5;i++){
-            for(int j = 0; j < orderDishCount; j++){
+            for(int j = 0; j < orderManager.orderDishCount; j++){
                 if(c[j] == a[i]){
-                    System.out.println(dishNames[orderDishIds[j]]);
+                    System.out.println(dishNames[orderManager.orderDishIds[j]]);
                     c[j] = 0;
                     break;
                 }
