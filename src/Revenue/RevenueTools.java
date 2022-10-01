@@ -12,13 +12,17 @@ public class RevenueTools {
     static double[] dishPrices = new double[50];
     static int dishCount = 0;
 
+
     static int[] orderDishIds =new int[50];
     static int[] orderDishCounts = new int[50];
     static int orderDishCount = 0;
-    static Scanner scanner = new Scanner(System.in);
-    static File orderDataFile = new File(FileUtils.getUserDirectoryPath() + "/learn/restaurant/menuMoney.dat");
-    static File menuAdminDataFile =new File(FileUtils.getUserDirectoryPath() + "/learn/restaurant/GL/menuMoney.dat");
 
+
+
+    static File menuOrderFile = new File(FileUtils.getUserDirectoryPath() + "/learn/restaurant/menuMoney.dat");
+    static File menuAdminFile =new File(FileUtils.getUserDirectoryPath() + "/learn/restaurant/GL/menuMoney.dat");
+
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         loadDishByAdmin();
@@ -293,7 +297,7 @@ public class RevenueTools {
             try {
                 for(int i = 0; i < orderDishCount; i++){
                     String danList = orderDishIds[i] + "\t" + orderDishCounts[i];
-                    FileUtils.write(orderDataFile,danList + "\n","utf8",true);
+                    FileUtils.write(menuOrderFile,danList + "\n","utf8",true);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -305,11 +309,11 @@ public class RevenueTools {
      * 管理人员保存菜单
      */
     public static void saveDishByAdmin(){
-        FileUtils.deleteQuietly(menuAdminDataFile);
+        FileUtils.deleteQuietly(menuAdminFile);
         try {
             for(int i = 0; i < dishCount; i++){
                 String danList = dishNames[i] + "\t" + dishPrices[i];
-                FileUtils.write(menuAdminDataFile,danList + "\n","utf8",true);
+                FileUtils.write(menuAdminFile,danList + "\n","utf8",true);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -322,7 +326,7 @@ public class RevenueTools {
      */
     public static void loadDishByAdmin(){
         try {
-            String menuInformationFile = FileUtils.readFileToString(menuAdminDataFile,"utf8");
+            String menuInformationFile = FileUtils.readFileToString(menuAdminFile,"utf8");
             String[] menuLines = menuInformationFile.split("\n");
             for(int i = 0;i < menuLines.length;i++){
                 String[] menuInformationStr = menuLines[i].split("\t");
@@ -352,7 +356,7 @@ public class RevenueTools {
      */
     public static void load(){
         try {
-            String orderDishInformation =FileUtils.readFileToString(orderDataFile,"utf8");
+            String orderDishInformation =FileUtils.readFileToString(menuOrderFile,"utf8");
             String[] menuOrderLines = orderDishInformation.split("\n");
             for(int i = 0;i < menuOrderLines.length;i++){
                 String[] menuMessages = menuOrderLines[i].split("\t");
